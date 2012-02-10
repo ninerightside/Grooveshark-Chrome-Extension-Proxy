@@ -70,3 +70,13 @@ for (var i = 0; i < GroovesharkProxy.apiCalls.length; ++i) {
     var funcName = GroovesharkProxy.apiCalls[i];
     GroovesharkProxy[funcName] = createActionFunc(funcName);
 };
+
+GroovesharkProxy.setSongStatusCallback = function(cb) {
+    GroovesharkProxy.songStatusCallback = cb;
+}
+
+GroovesharkProxyDiv.addEventListener('GroovesharkSongEvent', function() {
+    if (!GroovesharkProxy.songStatusCallback) return;
+    var data = JSON.parse(GroovesharkProxyDiv.innerText);
+    GroovesharkProxy.songStatusCallback(data);
+});
