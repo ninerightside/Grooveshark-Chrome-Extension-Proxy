@@ -9,7 +9,6 @@ function runOnPage() {
         GroovesharkProxyDiv.innerText = JSON.stringify(data);
         var evt = document.createEvent("Event");
         evt.initEvent("GroovesharkSongEvent", true, true );
-        GroovesharkProxyDiv.setAttribute('data-song-status', data);
         GroovesharkProxyDiv.dispatchEvent(evt);
     }
     
@@ -80,3 +79,4 @@ GroovesharkProxyDiv.addEventListener('GroovesharkSongEvent', function() {
     var data = JSON.parse(GroovesharkProxyDiv.innerText);
     GroovesharkProxy.songStatusCallback(data);
 });
+
